@@ -3,21 +3,23 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require("passport");
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const config = require('./config/database');
+const User = require('./models/user');
 
-// //Connect to DB
-// mongoose.connect(config.database);
+mongoose.connect(config.uri, config.options);
+var conn = mongoose.connection;             
+ 
+conn.on('error', console.error.bind(console, 'connection error:'));  
+ 
+conn.once('open', function() {
+  // Wait for the database connection to establish, then start the app.     
+    console.log('Connected to database.')                      
+});
 
-// //On Connection
-// mongoose.connection.on('connected', function(){
-//     console.log('Connected to database ' + config.database);
-// });
 
-// //On Error
-// mongoose.connection.on('error', function(error){
-//     console.log('Database error: ' + error);
-// });
+//Fix Mongoose depricated promise library
+mongoose.Promise = global.Promise;
 
 const app = express();
 
