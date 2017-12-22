@@ -5,7 +5,7 @@ const config = require('../config/database');
 //User Schema
 const UserSchema = mongoose.Schema({
     name:{
-        type: String
+        type: String 
     },
     email:{
         type: String,
@@ -46,8 +46,7 @@ module.exports.addUser = function(newUser, callback){
 }
 
 module.exports.comparePassword = function(submitPassword, hash, callback){
-    bcrypt.compare(submitPassword, hash, function(error, isMatch){
-        //TODO: Fix node server crash when passing in no password
+    bcrypt.compare(submitPassword, hash, function(error, isMatch){        
         if(error){
             throw error;
         }

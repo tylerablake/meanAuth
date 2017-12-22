@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { ValidateService } from '../../services/validate.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ password:string;
 
   constructor(private authService:AuthService,
               private router:Router,
-              private flashMessagesService:FlashMessagesService
+              private flashMessagesService:FlashMessagesService,
+              private validateService:ValidateService
   ) { }
 
   ngOnInit() {
@@ -25,6 +27,11 @@ password:string;
       username: this.username,
       password: this.password
     };
+
+    if(!this.validateService.validateLogin(user)){
+      this.flashMessagesService.show('Plese fill in all fields.', { cssClass: 'alert-danger', timeout: 5000}); 
+      return false;
+    }
 
     this.authService.authenticateUser(user).subscribe(data => {
       if(!data.success){
