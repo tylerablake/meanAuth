@@ -47,6 +47,7 @@ module.exports.addUser = function(newUser, callback){
 
 module.exports.comparePassword = function(submitPassword, hash, callback){
     bcrypt.compare(submitPassword, hash, function(error, isMatch){
+        //TODO: Fix node server crash when passing in no password
         if(error){
             throw error;
         }
