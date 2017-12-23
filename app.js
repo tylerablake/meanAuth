@@ -25,8 +25,8 @@ const app = express();
 
 const users = require('./routes/users');
 
-//Port Number
-const port = 8000;
+//Port Number configured for Heroku deployment.
+const port = process.env.PORT || 8080;
 
 //CORS Middleware
 app.use(cors());
