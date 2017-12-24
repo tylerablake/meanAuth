@@ -6,7 +6,10 @@ export class ValidateService {
   constructor() { }
 
   validateRegister(user){
-    if(user.name == undefined || user.username == undefined || user.email == undefined || user.password == undefined){
+    if((user.name == undefined || user.name === '') || 
+      (user.username == undefined || user.username === '') ||
+      (user.email == undefined || user.email === '') ||
+      (user.password == undefined || user.password === '')){
         return false;
     }
     else{
@@ -20,7 +23,8 @@ export class ValidateService {
   }
   
   validateLogin(user){
-    if(user.username == undefined || user.password == undefined){
+    if((user.username == undefined || user.username === '') || 
+        (user.password == undefined || user.password === '')){
       return false;
   }
   else{

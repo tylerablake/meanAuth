@@ -19,7 +19,15 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('register form is filled validation catches missing username', function(){
+  //   let user = {
+  //     name: 'Tyler',
+  //     username: null,
+  //     email: 'tyler@email.com',
+  //     password: 'password'
+  //   };
+  //   let registerMethodResult = component.(user);
+  //   expect().toBe(false)
+  // })
+
 });
