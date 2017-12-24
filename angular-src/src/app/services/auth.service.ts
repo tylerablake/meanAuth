@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { useAnimation } from '@angular/core/src/animation/dsl';
 import { tokenNotExpired } from 'angular2-jwt';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -14,14 +15,14 @@ export class AuthService {
   registerUser(user){
     let headers = new Headers();
     headers.append('Content-Type', 'Application/json');
-    return this.http.post('users/register', user, {headers: headers})
+    return this.http.post(environment.apiUrl + 'users/register', user, {headers: headers})
     .map(res => res.json());
   }
 
   authenticateUser(user){
     let headers = new Headers();
     headers.append('Content-Type', 'Application/json');
-    return this.http.post('users/authenticate', user, {headers: headers})
+    return this.http.post(environment.apiUrl +'users/authenticate', user, {headers: headers})
     .map(res => res.json());
   }
 
@@ -30,7 +31,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Content-Type', 'Application/json');
     headers.append('Authorization', this.authToken);
-    return this.http.get('users/profile', {headers: headers})
+    return this.http.get(environment.apiUrl + 'users/profile', {headers: headers})
     .map(res => res.json());
 
   }

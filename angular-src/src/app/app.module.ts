@@ -23,6 +23,9 @@ import { AuthService } from './services/auth.service';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 
+import { environment } from '../environments/environment';
+import { SettingsComponent } from './components/settings/settings.component';
+
 //Routes
 const appRoutes: Routes = [
   {path: '',component: HomeComponent},
@@ -30,6 +33,7 @@ const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
   {path: 'dashboard',component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'profile',component: ProfileComponent, canActivate:[AuthGuard]},
+  {path: 'settings',component: SettingsComponent},
 ];
 
 @NgModule({
@@ -40,7 +44,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
